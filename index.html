@@ -357,25 +357,22 @@
  
 
     // Função que coleta os dados do formulário e monta o currículo para exibição
-    function gerarPerfil() {
-      // Captura os valores digitados pelo usuário
-      const nome = document.getElementById("nome").value.trim();
-      const idade = document.getElementById("idade").value.trim();
-      const local = document.getElementById("local").value.trim();
-      const whatsapp = document.getElementById("whatsapp").value.trim();
-      const email = document.getElementById("email").value.trim();
-      if (escolaridade === "Ensino Médio concluído" && anoConclusao) {
-  document.getElementById("curriculoEducacao").textContent = `${escolaridade} - ${escola} (${anoConclusao})`;
-} else {
-  document.getElementById("curriculoEducacao").textContent = `${escolaridade} - ${escola}`;
-}
+   function gerarPerfil() {
 
-      const escola = document.getElementById("escola").value.trim();
-      const anoConclusao = document.getElementById("anoConclusao")?.value.trim();
-      const habilidades = document.getElementById("habilidades").value.trim();
-      const cursos = document.getElementById("cursos").value.trim();
-      const experiencia = document.getElementById("experiencia").value.trim();
-      const objetivo = document.getElementById("objetivo").value.trim();
+  const nome = document.getElementById("nome").value.trim();
+  const idade = document.getElementById("idade").value.trim();
+  const local = document.getElementById("local").value.trim();
+  const whatsapp = document.getElementById("whatsapp").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const escolaridade = document.getElementById("escolaridade").value.trim();
+
+  const escola = document.getElementById("escola").value.trim();
+  const anoConclusao = document.getElementById("anoConclusao")?.value.trim();
+
+  const habilidades = document.getElementById("habilidades").value.trim();
+  const cursos = document.getElementById("cursos").value.trim();
+  const experiencia = document.getElementById("experiencia").value.trim();
+  const objetivo = document.getElementById("objetivo").value.trim();
 
       // Validação simples para garantir que campos obrigatórios foram preenchidos
       if (!nome || !idade || !local || !whatsapp ||!email || !escolaridade || !escola || !habilidades || !objetivo) {
@@ -436,13 +433,15 @@
   const escolaridade = document.getElementById("escolaridade").value;
   const campoAno = document.getElementById("campoAno");
 
-  if (escolaridade === "Ensino Médio concluído") {
-    campoAno.style.display = "block";
-  } else {
-    campoAno.style.display = "none";
-  }
+if (escolaridade === "Ensino Médio concluído" && anoConclusao) {
+  document.getElementById("curriculoEducacao").textContent =
+    `${escolaridade} - ${escola} (${anoConclusao})`;
+} else {
+  document.getElementById("curriculoEducacao").textContent =
+    `${escolaridade} - ${escola}`;
 }
 
+}
 
     // Função para limpar todos os campos do formulário para facilitar nova entrada
     function limparCampos() {
