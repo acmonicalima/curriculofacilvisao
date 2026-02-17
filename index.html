@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <title>VISÃO - Currículo Profissional</title>
+  <!-- Fonte Poppins importada do Google Fonts para melhor aparência -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico para remover margens e padding padrão */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Estilo do corpo da página com fonte e fundo degradê lilás/roxo */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffffff, #ffffff, #ffffff);
+      color: #333;
+      min-height: 100vh;
+      padding: 15px;
+    }
+
+    /* Container para centralizar conteúdo e limitar largura */
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    /* Estilo para cabeçalho com texto branco */
+    header {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    /* Logo centralizada e com tamanho fixo */
+    .logo {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px auto;
+    }
+
+    /* Título principal estilizado */
+    h1 {
+      font-size: 2rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      font-weight: 700;
+      text-align: center;
+      color: rgb(0, 0, 0);
+    }
+
+    /* Slogan do app, texto menor e levemente transparente */
+    .slogan {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 25px;
+      font-weight: 500;
+      text-align: center;
+      color: rgb(0, 0, 0);
+    }
+
+    /* Cartão branco para formulário e currículo com sombra e arredondamento */
+    .card {
+      background: rgb(5, 5, 5);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 20px auto;
+      max-width: 500px;
+      text-align: left;
+    }
+
+    /* Rótulos alinhados à esquerda com negrito */
+    label {
+      display: block;
+      text-align: left;
+      margin: 15px 0 6px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Inputs e selects estilizados para largura total e padding */
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Textarea com altura mínima e redimensionamento vertical */
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    /* Botões estilizados com cores e transições para hover */
+    button {
+      background: #cb1d11;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 10px 5px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    /* Efeito hover para botões principais */
+    button:hover {
+      background: #e77676;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+    }
+
+    /* Botão secundário com cor diferente */
+    button.secondary {
+      background: #4ecdc4;
+    }
+
+    button.secondary:hover {
+      background: #44c7b0;
+    }
+
+    /* Botão de limpar campos com cinza claro */
+    button.clear {
+      background: #ccc;
+      color: #333;
+    }
+
+    button.clear:hover {
+      background: #bbb;
+    }
+
+    /* Elementos ocultos com classe hidden */
+    .hidden {
+      display: none;
+    }
+
+    
+    /* Currículo gerado, com formatação limpa e cores azuis */
+    .curriculo {
+      background: white;
+      padding: 0;
+      margin: 40px auto;
+      max-width: 800px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+      text-align: left;
+    }
+
+    /* Título do currículo */
+    .curriculo h1 {
+      font-size: 24px;
+      color: #2575fc;
+      margin-bottom: 5px;
+      border-bottom: 2px solid #2575fc;
+      padding-bottom: 5px;
+    }
+
+    /* Informação complementar do currículo em cinza */
+    .curriculo .info {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    /* Subtítulos do currículo */
+    .curriculo h2 {
+      font-size: 18px;
+      color: #2575fc;
+      margin: 20px 0 10px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+
+    /* Parágrafos e listas no currículo */
+    .curriculo p, .curriculo ul {
+      margin-bottom: 10px;
+    }
+
+    /* Lista de marcadores para habilidades, cursos, etc */
+    .curriculo ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    .curriculo li {
+      margin-bottom: 5px;
+    }
+
+    /* Configura impressão para deixar só o currículo visível */
+    @media print {
+      body {
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      .container {
+        max-width: 800px;
+        padding: 0;
+        margin: 0;
+      }
+      header, button, .slogan, .card, .dica, footer {
+        display: none !important;
+      }
+      .curriculo {
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+      }
+      .curriculo h1, .curriculo h2 {
+        color: #000;
+      }
+      .curriculo .info {
+        color: #000;
+      }
+      .curriculo h2, .curriculo p {
+        page-break-inside: avoid;
+      }
+      /* Remove automaticamente data, hora e URL do navegador */
+      @page {
+        margin: 0.5cm;
+        size: A4;
+      }
+    }
+
+    /* Estilos responsivos */
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+      .curriculo, .card {
+        padding: 15px;
+        margin: 10px;
+      }
+      .curriculo h1 {
+        font-size: 20px;
+      }
+      .curriculo h2 {
+        font-size: 16px;
+      }
+      button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+      .logo {
+        width: 280px;
+      }
+      .dica {
+        font-size: 13px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cabeçalho com logo e título do projeto -->
+    <header>
+      <img src="visaobase.png" alt="Logo VISÃO" class="logo">
+    
+    </header>
+
+    <!-- Formulário para entrada de dados do aluno e geração de currículo -->
+    <div class="card" id="formCard">
+      <label>Nome completo</label>
+      <input type="text" id="nome" placeholder="Ex: Ana Silva">
+
+      <label>Idade</label>
+      <input type="number" id="idade" placeholder="Ex: 16">
+
+      <label>Bairro e Cidade</label>
+      <input type="text" id="local" placeholder="Ex: Jardim Esperança, Rio de Janeiro">
+
+      <label>WhatsApp</label>
+      <input type="text" id="whatsapp" placeholder="Ex: (21) 99876-5432">
+
+      <label>E-mail</label>
+      <input type="email" id="email" placeholder="Ex: ana@email.com">
+
+      <label>Escolaridade</label>
+      <select id="escolaridade" onchange="verificarEscolaridade()">
+  <option value="">Selecione</option>
+  <option value="Ensino Médio em curso">Ensino Médio em curso</option>
+  <option value="Ensino Médio concluído">Ensino Médio concluído</option>
+</select>
+
+
+      <div id="campoEscola">
+  <label>Nome da escola</label>
+  <input type="text" id="escola" placeholder="Ex: Sua Escola Atual ou que você conclui ">
+</div>
+<div id="campoAno" style="display:none;">
+  <label>Ano de conclusão</label>
+  <input type="number" id="anoConclusao" placeholder="Ex: 2024">
+</div>
+
+
+      <label>Habilidades</label>
+      <input type="text" id="habilidades" placeholder="Ex: organização, pontualidade, informática">
+
+      <label>Cursos</label>
+      <input type="text" id="cursos" placeholder="Ex: informática básica, inglês, outros">
+
+      <label>Experiência</label>
+      <input type="text" id="experiencia" placeholder="Ex: ajudante em evento, monitor na igreja, outros">
+
+      <label>Objetivo profissional</label>
+      <textarea id="objetivo" placeholder="Ex: Buscar vaga de jovem aprendiz( primeiro emprego ) na área ( colocar a área desejada )"></textarea>
+
+      <!-- Botão que executa a função de gerar currículo -->
+      <button onclick="gerarPerfil()">Montar Meu Perfil</button>
+      <button class="clear" onclick="limparCampos()">Limpar Campos</button>
+    </div>
+
+    <!-- Área onde o currículo gerado será exibido -->
+    <div class="curriculo hidden" id="curriculoCard">
+      <h1 id="curriculoNome">Seu Nome</h1>
+      <div class="info" id="curriculoInfo"></div>
+
+      <h2>Objetivo Profissional</h2>
+      <p id="curriculoObjetivo"></p>
+
+      <h2>Educação</h2>
+      <p id="curriculoEducacao"></p>
+
+      <h2>Habilidades</h2>
+      <p id="curriculoHabilidades"></p>
+
+      <div id="sectionCursos">
+        <h2>Cursos</h2>
+        <p id="curriculoCursos"></p>
+      </div>
+
+      <div id="sectionExperiencia">
+        <h2>Experiência</h2>
+        <p id="curriculoExperiencia"></p>
+      </div>
+
+      <!-- Botões de ações para salvar, mostrar dica e tentar novamente -->
+      <button onclick="imprimirPerfil()">Salvar como PDF</button>
+            <button onclick="voltarForm()">Tentar de Novo</button>
+    </div>
+
+   
+  <script>
+ 
+
+    // Função que coleta os dados do formulário e monta o currículo para exibição
+    function gerarPerfil() {
+      // Captura os valores digitados pelo usuário
+      const nome = document.getElementById("nome").value.trim();
+      const idade = document.getElementById("idade").value.trim();
+      const local = document.getElementById("local").value.trim();
+      const whatsapp = document.getElementById("whatsapp").value.trim();
+      const email = document.getElementById("email").value.trim();
+      if (escolaridade === "Ensino Médio concluído" && anoConclusao) {
+  document.getElementById("curriculoEducacao").textContent = `${escolaridade} - ${escola} (${anoConclusao})`;
+} else {
+  document.getElementById("curriculoEducacao").textContent = `${escolaridade} - ${escola}`;
+}
+
+      const escola = document.getElementById("escola").value.trim();
+      const anoConclusao = document.getElementById("anoConclusao")?.value.trim();
+      const habilidades = document.getElementById("habilidades").value.trim();
+      const cursos = document.getElementById("cursos").value.trim();
+      const experiencia = document.getElementById("experiencia").value.trim();
+      const objetivo = document.getElementById("objetivo").value.trim();
+
+      // Validação simples para garantir que campos obrigatórios foram preenchidos
+      if (!nome || !idade || !local || !whatsapp ||!email || !escolaridade || !escola || !habilidades || !objetivo) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
+      }
+
+      // Atualiza os elementos do documento com os dados do usuário para formar o currículo
+      document.getElementById("curriculoNome").textContent = `${nome} (${idade} anos)`;
+      document.getElementById("curriculoInfo").textContent = `${local} | ${whatsapp}${email ? ' | ' + email : ''}`;
+      document.getElementById("curriculoObjetivo").textContent = objetivo;
+      document.getElementById("curriculoEducacao").textContent = `${escolaridade} - ${escola}`;
+      document.getElementById("curriculoHabilidades").textContent = habilidades;
+
+      // Mostra ou oculta seção de cursos conforme preenchido
+      const sectionCursos = document.getElementById("sectionCursos");
+      if (cursos) {
+        document.getElementById("curriculoCursos").textContent = cursos;
+        sectionCursos.style.display = "block";
+      } else {
+        sectionCursos.style.display = "none";
+      }
+
+      // Mostra ou oculta seção de experiência conforme preenchido
+      const sectionExperiencia = document.getElementById("sectionExperiencia");
+      if (experiencia) {
+        document.getElementById("curriculoExperiencia").textContent = experiencia;
+        sectionExperiencia.style.display = "block";
+      } else {
+        sectionExperiencia.style.display = "none";
+      }
+
+      // Esconde o formulário e mostra o currículo gerado
+      document.getElementById("formCard").classList.add("hidden");
+      document.getElementById("curriculoCard").classList.remove("hidden");
+
+      // Exibe a primeira dica motivacional ao gerar o perfil
+      document.getElementById("dicaDia").textContent = dicas[0];
+    }
+
+    // Função para mostrar uma dica aleatória do array
+    function mostrarDica() {
+      const random = Math.floor(Math.random() * dicas.length);
+      document.getElementById("dicaDia").textContent = dicas[random];
+    }
+
+    // Função para voltar ao formulário para edição dos dados
+    function voltarForm() {
+      document.getElementById("curriculoCard").classList.add("hidden");
+      document.getElementById("formCard").classList.remove("hidden");
+    }
+
+    // Função que chama o diálogo de impressão para salvar o currículo em PDF
+    function imprimirPerfil() {
+      window.print();
+    }
+    function verificarEscolaridade() {
+  const escolaridade = document.getElementById("escolaridade").value;
+  const campoAno = document.getElementById("campoAno");
+
+  if (escolaridade === "Ensino Médio concluído") {
+    campoAno.style.display = "block";
+  } else {
+    campoAno.style.display = "none";
+  }
+}
+
+
+    // Função para limpar todos os campos do formulário para facilitar nova entrada
+    function limparCampos() {
+      document.getElementById("nome").value = "";
+      document.getElementById("idade").value = "";
+      document.getElementById("local").value = "";
+      document.getElementById("whatsapp").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("escolaridade").selectedIndex = 0;
+      document.getElementById("escola").value = "";
+      document.getElementById("habilidades").value = "";
+      document.getElementById("cursos").value = "";
+      document.getElementById("experiencia").value = "";
+      document.getElementById("objetivo").value = "";
+    }
+  </script>
+</body>
+
+</html>
